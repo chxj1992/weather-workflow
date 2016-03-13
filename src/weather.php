@@ -33,7 +33,7 @@ class Weather{
 			$this->workflows->result(	'',
 		  						'',
 					  			'没查到呀', 
-					  			'没找到你所查询城市的天气',
+					  			'没找到'.$query.'的天气',
 					  			'unknown.png' );
 		}
 
@@ -44,7 +44,7 @@ class Weather{
 		$res = $this->workflows->request($this->locationUrl);
 		$location = json_decode($res, true);
 		
-		return !empty($location['content']['address']) ? $location['content']['address'] : '北京市';
+		return !empty($location['content']['address_detail']['city']) ? $location['content']['address_detail']['city'] : '北京市';
 	} 
 	
 }
